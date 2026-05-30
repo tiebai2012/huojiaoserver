@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>火教集团附属服务器</title>
     <meta name="description" content="火教集团附属服务器 - Minecraft 1.20.1 铁路模组服务器" />
+    <link rel="icon" id="favicon" type="image/png" href="">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -283,8 +284,10 @@
                 if (data.favicon) {
                     const headerLogo = document.getElementById('header-logo');
                     const heroLogo = document.getElementById('hero-logo');
+                    const favicon = document.getElementById('favicon');
                     if (headerLogo) headerLogo.src = data.favicon;
                     if (heroLogo) heroLogo.src = data.favicon;
+                    if (favicon) favicon.href = data.favicon;
                 }
                 
                 mainStatus.innerHTML = '<span class="indicator-dot online"></span><span class="indicator-text">在线</span>';
