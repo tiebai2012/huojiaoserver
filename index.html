@@ -13,7 +13,7 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon">🚂</span>
+                <img src="" alt="Server Logo" class="server-logo" id="header-logo" />
                 <span class="logo-text">火教集团</span>
             </div>
             <nav class="nav">
@@ -28,6 +28,9 @@
     <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="hero-content">
+            <div class="server-logo-container">
+                <img src="" alt="Server Logo" class="hero-server-logo" id="hero-logo" />
+            </div>
             <h1 class="glitch-text" data-text="火教集团附属服务器">火教集团附属服务器</h1>
             <p class="subtitle">Minecraft 1.20.1 • Forge MTR火车模组</p>
             <div class="hero-ip" onclick="copyIP()">
@@ -277,6 +280,13 @@
             const heroStatus = document.getElementById('hero-status');
             
             if (online && data) {
+                if (data.favicon) {
+                    const headerLogo = document.getElementById('header-logo');
+                    const heroLogo = document.getElementById('hero-logo');
+                    if (headerLogo) headerLogo.src = data.favicon;
+                    if (heroLogo) heroLogo.src = data.favicon;
+                }
+                
                 mainStatus.innerHTML = '<span class="indicator-dot online"></span><span class="indicator-text">在线</span>';
                 heroStatus.innerHTML = '<span class="status-dot online"></span><span class="status-text">服务器在线</span>';
                 
