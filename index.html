@@ -4,41 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>火教集团附属服务器</title>
-    <meta name="description" content="火教集团附属服务器 - Minecraft 1.20.1 铁路模组服务器" />
+    <meta name="description" content="火教集团附属服务器" />
     <link rel="icon" id="favicon" type="image/png" href="">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="particle-background" id="particles"></div>
-    
     <header class="header">
         <div class="container">
             <div class="logo">
-                <img src="" alt="Server Logo" class="server-logo" id="header-logo" />
-                <span class="logo-text">火教集团</span>
+                <img src="" alt="Logo" class="server-logo" id="header-logo" />
+                <span class="logo-text">火教集团附属服务器</span>
             </div>
-            <nav class="nav">
-                <a href="#home">首页</a>
-                <a href="#status">状态</a>
-                <a href="#join">加入</a>
-                <a href="#download">下载</a>
+            <nav class="nav" id="nav">
+                <a href="#" data-page="home" class="active">首页</a>
+                <a href="#" data-page="reward">奖励</a>
+                <a href="#" data-page="notice">公告</a>
+                <a href="#" data-page="wechat">公众号</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <div class="server-logo-container">
-                <img src="" alt="Server Logo" class="hero-server-logo" id="hero-logo" />
-            </div>
-            <h1 class="glitch-text" data-text="火教集团附属服务器">火教集团附属服务器</h1>
-            <p class="subtitle">Minecraft 1.20.1 • Forge 铁路模组</p>
-            <div class="hero-ip" onclick="copyIP()">
-                <span class="ip-label">服务器地址</span>
-                <code class="ip-address">mc.huojiao.fun</code>
-                <span class="copy-hint">点击复制</span>
-            </div>
+    <!-- 首页 -->
+    <section class="page active" id="page-home">
+        <div class="page-content">
+            <h1>火教集团附属服务器</h1>
             <div class="hero-stats">
                 <div class="stat-item">
                     <span class="stat-value" id="hero-players">--</span>
@@ -47,7 +36,7 @@
                 <div class="stat-divider"></div>
                 <div class="stat-item">
                     <span class="stat-value" id="hero-ping">--</span>
-                    <span class="stat-label">延迟(ms)</span>
+                    <span class="stat-label">延迟 (ms)</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
@@ -57,295 +46,344 @@
             </div>
             <div class="hero-status" id="hero-status">
                 <span class="status-dot"></span>
-                <span class="status-text">正在获取状态...</span>
+                <span id="status-label">正在获取状态...</span>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>向下滑动</span>
-            <div class="scroll-arrow"></div>
-        </div>
-    </section>
-
-    <section class="section status-section" id="status">
-        <div class="container">
-            <h2 class="section-title">服务器状态</h2>
-            <div class="status-grid">
-                <div class="status-card glass-card">
-                    <div class="card-icon">🎮</div>
-                    <h3>服务器状态</h3>
-                    <div class="status-display">
-                        <div class="status-indicator" id="main-status">
-                            <span class="indicator-dot"></span>
-                            <span class="indicator-text">检测中</span>
-                        </div>
-                    </div>
-                    <div class="card-detail">
-                        <span>版本</span>
-                        <strong>1.20.1 Forge</strong>
-                    </div>
-                </div>
-                
-                <div class="status-card glass-card">
-                    <div class="card-icon">👥</div>
-                    <h3>在线玩家</h3>
-                    <div class="player-display">
-                        <span class="player-current" id="card-players">--</span>
-                        <span class="player-separator">/</span>
-                        <span class="player-max">2026</span>
-                    </div>
-                    <div class="player-bar">
-                        <div class="player-bar-fill" id="player-bar"></div>
-                    </div>
-                </div>
-                
-                <div class="status-card glass-card">
-                    <div class="card-icon">⚡</div>
-                    <h3>服务器延迟</h3>
-                    <div class="ping-display">
-                        <span class="ping-value" id="card-ping">--</span>
-                        <span class="ping-unit">ms</span>
-                    </div>
-                    <div class="card-detail">
-                        <span>网络质量</span>
-                        <strong id="ping-quality">优秀</strong>
-                    </div>
+            <div class="player-list" id="player-list">
+                <h3 class="player-list-title">在线玩家列表</h3>
+                <div class="player-list-items" id="player-list-items">
+                    <span class="player-empty">加载中...</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section players-section" id="players">
-        <div class="container">
-            <h2 class="section-title">在线玩家</h2>
-            <div class="players-container glass-card">
-                <div class="players-header">
-                    <span>玩家名称</span>
-                    <span>在线时间</span>
+    <!-- 公告 -->
+    <section class="page" id="page-notice">
+        <div class="notice-layout">
+            <aside class="notice-sidebar">
+                <h3 class="sidebar-title">公告列表</h3>
+                <nav class="sidebar-nav" id="notice-nav">
+                </nav>
+            </aside>
+            <main class="notice-main" id="notice-main">
+                <div class="notice-detail-empty">
+                    <p>请从左侧选择公告查看</p>
                 </div>
-                <div class="players-list" id="players-list">
-                    <div class="player-item">
-                        <span class="player-name">暂无玩家在线</span>
-                    </div>
-                </div>
-            </div>
+            </main>
         </div>
     </section>
 
-    <section class="section info-section" id="info">
-        <div class="container">
-            <h2 class="section-title">服务器信息</h2>
-            <div class="info-grid">
-                <div class="info-card glass-card">
-                    <div class="info-icon">🚂</div>
-                    <h3>铁路模组</h3>
-                    <p>体验真实的铁路系统，包括地铁、轻轨、火车等多种列车</p>
-                    <ul class="feature-list">
-                        <li>真实列车模拟</li>
-                        <li>多个铁路线路</li>
-                        <li>精美站台设计</li>
-                    </ul>
+    <!-- 奖励 -->
+    <section class="page" id="page-reward">
+        <div class="notice-layout">
+            <aside class="notice-sidebar">
+                <h3 class="sidebar-title">奖励月份</h3>
+                <nav class="sidebar-nav" id="reward-nav">
+                </nav>
+            </aside>
+            <main class="notice-main" id="reward-main">
+                <div class="notice-detail-empty">
+                    <p>请从左侧选择月份查看</p>
                 </div>
-                
-                <div class="info-card glass-card">
-                    <div class="info-icon">🏗️</div>
-                    <h3>自由建造</h3>
-                    <p>在服务器中自由建造你的梦想家园，与朋友一起创造</p>
-                    <ul class="feature-list">
-                        <li>多人协作</li>
-                        <li>资源共建</li>
-                        <li>创意无限</li>
-                    </ul>
-                </div>
-                
-                <div class="info-card glass-card">
-                    <div class="info-icon">�</div>
-                    <h3>社区活动</h3>
-                    <p>定期举办各种活动，与玩家社区一起享受游戏乐趣</p>
-                    <ul class="feature-list">
-                        <li>建筑比赛</li>
-                        <li>火车展览</li>
-                        <li>节日活动</li>
-                    </ul>
-                </div>
-            </div>
+            </main>
         </div>
     </section>
 
-    <section class="section join-section" id="join">
-        <div class="container">
-            <h2 class="section-title">如何加入</h2>
-            <div class="join-steps glass-card">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>下载模组包</h3>
-                        <p>下载服务器提供的模组整合包</p>
-                    </div>
-                </div>
-                <div class="step-arrow">→</div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>安装模组</h3>
-                        <p>将模组包导入Minecraft</p>
-                    </div>
-                </div>
-                <div class="step-arrow">→</div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>添加服务器</h3>
-                        <p>添加服务器地址并连接</p>
-                    </div>
-                </div>
-            </div>
-            <div class="join-ip">
-                <span>服务器地址：</span>
-                <code onclick="copyIP()">mc.huojiao.fun</code>
-            </div>
+    <!-- 公众号 -->
+    <section class="page" id="page-wechat">
+        <div class="page-content">
+            <h2 class="page-title">公众号</h2>
+            <p class="wechat-desc">关注公众号，获取最新整合包与服务器动态</p>
+            <img src="wechat-qrcode.png" alt="火教公众号二维码" class="wechat-qrcode" />
         </div>
     </section>
-
-    <section class="section download-section" id="download">
-        <div class="container">
-            <h2 class="section-title">资源下载</h2>
-            <div class="download-card glass-card">
-                <div class="download-icon">📱</div>
-                <div class="download-info">
-                    <h3>关注公众号获取整合包</h3>
-                    <p>扫描下方二维码或点击按钮访问公众号文章下载模组包</p>
-                    <div class="download-meta">
-                        <span>版本: 1.20.1</span>
-                        <span>平台: Forge</span>
-                    </div>
-                </div>
-                <a href="https://mp.weixin.qq.com/s/J7bZNIc1vqQxIeUm0555Pg" target="_blank" rel="noopener noreferrer" class="download-btn">
-                    <span>前往公众号下载</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                        <polyline points="15,3 21,3 21,9"/>
-                        <line x1="10" y1="14" x2="21" y2="3"/>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="footer-icon">🚂</span>
-                    <span>火教集团附属服务器</span>
-                </div>
-                <p class="footer-text">基于 Minecraft 1.20.1 + 铁路模组</p>
-                <p class="footer-copyright">&copy; 2026 火教集团. 所有权利保留.</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
-        let particles = [];
-        const particleCount = 50;
+        // ==================================================================
+        // 公告数据 — 直接套用「火教」微信公众号每一条文章内容
+        // 公众号有新文章时，在下面数组中追加即可（title/date/content 保持原文格式）
+        // ==================================================================
+        var notices = [
+            {
+                id: 8,
+                title: '祝贺烧饼生存服务器建服一周年',
+                date: '2026-06-20',
+                content: '<p>值烧饼生存服务器开服一周年之际，火教集团附属服务器全体玩家与管理特此送上热烈祝贺！</p>' +
+                    '<p>听闻烧饼服全体玩家合力完成蘑菇岛周年纪念碑、海西村纪念碑、杂烩集团驻服交流馆、烧饼地铁四五号线一期以及广场周年蛋糕五大周年献礼工程，我们由衷为烧饼服取得的成果感到欣喜，祝愿烧饼生存服务器往后长久平稳运营，玩家络绎不绝，持续打造更多精彩建筑，火教集团附属服务器也期待日后与烧饼服多多开展跨服联动，携手共创更好的游戏游玩氛围！</p>'
+            },
+            {
+                id: 7,
+                title: '火教集团附属服务器整合包更新日志',
+                date: '2026-06-14',
+                content: '<h3>V3.4.0</h3>' +
+                    '<p>添加了Axiom，方便建造</p>' +
+                    '<p>修复没有服务器自定义资源的问题</p>' +
+                    '<p>添加了一个光影</p>' +
+                    '<p>在Minecraft标题屏幕做了一些奇葩的更改</p>' +
+                    '<p>更新了全部模组</p>'
+            },
+            {
+                id: 6,
+                title: '关于5月4日事件的处理公告',
+                date: '2026-05-05',
+                content: '<p>5月4日事件过后，根据恶劣程度添加3人进入永久黑名单，因为法律问题，请在群公告查看。</p>'
+            },
+            {
+                id: 5,
+                title: '烧饼小队和火教集团停战协定签署',
+                date: '2026-05-04',
+                content: '<p>一、烧饼小队和火教集团互相承认对方对其服务器合法的绝对领导，停止一切意图颠覆对方领导的行为；</p>' +
+                    '<p>二、烧饼小队和火教集团互相尊重，停止谩骂，建立外交关系；</p>' +
+                    '<p>三、烧饼小队和火教集团允许其成员和服务器成员加入对方组织和对方服务器；</p>' +
+                    '<p>四、解散火教中央政府，允许双方成员和服务器成员加入火教中央政府革命委员会，将其打造为一个中立的，不领导任何服务器、不干涉任何服务器的和平统一战线组织；</p>' +
+                    '<p>五、烧饼小队和火教集团的成员和服务器成员有义务遵循本协定之规定，并按照本协定约束自己的言论和行为；</p>' +
+                    '<p>六、对于违背本协定原则和精神的历史文献和资料，不得修改，必要时可以引用其原文，不受本协定影响。</p>'
+            },
+            {
+                id: 4,
+                title: '火城虚拟地铁13号线一期竣工',
+                date: '2026-04-26',
+                content: '<p>火城地铁13号线一期2026年4月19日竣工，4月26日拍摄了POV。</p>' +
+                    '<p><a href="https://b23.tv/w7XKSWy" target="_blank" rel="noopener noreferrer">观看POV视频 →</a></p>'
+            },
+            {
+                id: 3,
+                title: '玩家BLSDXZ成为服务器3月最佳玩家',
+                date: '2026-04-08',
+                content: '<p>玩家Blsdxz成为服务器3月上线时间最长和最佳玩家，服主已经对其进行了相应的奖励，并表示祝贺，希望各位玩家继续努力建设。</p>'
+            },
+            {
+                id: 2,
+                title: '石村游乐园站站房整体建成',
+                date: '2026-04-07',
+                content: '<p>4月6日，火城地铁13号线石村游乐园站站房整体建成，之后会对站内进行装修，石村游乐园站是13号线一期最后一座车站，建成后13号线会正式开通。</p>'
+            },
+            {
+                id: 1,
+                title: '庆祝火教公众号正式创立',
+                date: '2026-04-06',
+                content: '<p>2026年4月6日，火教集团公众号创立</p>'
+            }
+        ];
 
-        function initParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                container.appendChild(particle);
+        var activeNoticeId = null;
+
+        function renderNoticeSidebar() {
+            var nav = document.getElementById('notice-nav');
+            var html = '';
+            for (var i = 0; i < notices.length; i++) {
+                var n = notices[i];
+                var cls = (activeNoticeId === n.id) ? ' sidebar-link active' : 'sidebar-link';
+                html += '<a href="#" class="' + cls + '" data-id="' + n.id + '">' +
+                    '<span class="sidebar-link-title">' + n.title + '</span>' +
+                    '<span class="sidebar-link-date">' + n.date + '</span>' +
+                    '</a>';
+            }
+            nav.innerHTML = html;
+
+            nav.onclick = function(e) {
+                e.preventDefault();
+                var link = e.target.closest('.sidebar-link');
+                if (!link) return;
+                var id = parseInt(link.getAttribute('data-id'));
+                showNoticeDetail(id);
+            };
+        }
+
+        function showNoticeDetail(id) {
+            var notice = null;
+            for (var i = 0; i < notices.length; i++) {
+                if (notices[i].id === id) { notice = notices[i]; break; }
+            }
+            if (!notice) return;
+
+            activeNoticeId = id;
+            var links = document.querySelectorAll('.sidebar-link');
+            for (var j = 0; j < links.length; j++) {
+                links[j].classList.remove('active');
+            }
+            var activeLink = document.querySelector('.sidebar-link[data-id="' + id + '"]');
+            if (activeLink) activeLink.classList.add('active');
+
+            var main = document.getElementById('notice-main');
+            main.innerHTML =
+                '<article class="notice-detail">' +
+                '<h2 class="notice-detail-title">' + notice.title + '</h2>' +
+                '<time class="notice-detail-date">' + notice.date + '</time>' +
+                '<div class="notice-detail-body">' + notice.content + '</div>' +
+                '</article>';
+        }
+
+        // ==================================================================
+        // 奖励数据 — 每月最佳玩家
+        // ==================================================================
+        var rewards = [
+            {
+                id: 1,
+                month: '2026年6月',
+                player: 'li2012China',
+                items: [
+                    { title: '最佳玩家', desc: '综合表现最优' },
+                    { title: '上线时间最长', desc: '全服在线时长第一' }
+                ],
+                skin: 'skin-li2012china.png'
+            }
+        ];
+
+        var activeRewardId = null;
+
+        function renderRewardSidebar() {
+            var nav = document.getElementById('reward-nav');
+            var html = '';
+            for (var i = 0; i < rewards.length; i++) {
+                var r = rewards[i];
+                var cls = (activeRewardId === r.id) ? ' sidebar-link active' : 'sidebar-link';
+                html += '<a href="#" class="' + cls + '" data-id="' + r.id + '">' +
+                    '<span class="sidebar-link-title">' + r.month + '</span>' +
+                    '</a>';
+            }
+            nav.innerHTML = html;
+
+            nav.onclick = function(e) {
+                e.preventDefault();
+                var link = e.target.closest('.sidebar-link');
+                if (!link) return;
+                var id = parseInt(link.getAttribute('data-id'));
+                showRewardDetail(id);
+            };
+        }
+
+        function showRewardDetail(id) {
+            var reward = null;
+            for (var i = 0; i < rewards.length; i++) {
+                if (rewards[i].id === id) { reward = rewards[i]; break; }
+            }
+            if (!reward) return;
+
+            activeRewardId = id;
+            var links = document.querySelectorAll('#reward-nav .sidebar-link');
+            for (var j = 0; j < links.length; j++) {
+                links[j].classList.remove('active');
+            }
+            var activeLink = document.querySelector('#reward-nav .sidebar-link[data-id="' + id + '"]');
+            if (activeLink) activeLink.classList.add('active');
+
+            var main = document.getElementById('reward-main');
+            var itemsHtml = '';
+            for (var k = 0; k < reward.items.length; k++) {
+                var item = reward.items[k];
+                itemsHtml +=
+                    '<div class="reward-item">' +
+                    '<h3 class="reward-item-title">' + item.title + '</h3>' +
+                    '<p class="reward-item-player">' + reward.player + '</p>' +
+                    '<p class="reward-item-desc">' + item.desc + '</p>' +
+                    '<div class="reward-skin-preview">' +
+                    '<img src="' + reward.skin + '" alt="' + reward.player + ' 皮肤3D预览" class="reward-skin-img" />' +
+                    '</div>' +
+                    '</div>';
+            }
+            main.innerHTML =
+                '<article class="notice-detail">' +
+                '<h2 class="notice-detail-title">' + reward.month + ' 奖励</h2>' +
+                '<div class="reward-items-grid">' + itemsHtml + '</div>' +
+                '</article>';
+        }
+
+        // ===== 页面切换 =====
+        function switchPage(pageName) {
+            var pages = document.querySelectorAll('.page');
+            for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
+            var navLinks = document.querySelectorAll('.nav a');
+            for (var j = 0; j < navLinks.length; j++) { navLinks[j].classList.remove('active'); }
+
+            var targetPage = document.getElementById('page-' + pageName);
+            if (targetPage) { targetPage.classList.add('active'); targetPage.scrollTop = 0; }
+
+            var targetNav = document.querySelector('.nav a[data-page="' + pageName + '"]');
+            if (targetNav) targetNav.classList.add('active');
+
+            if (pageName === 'notice') {
+                document.getElementById('notice-nav').scrollTop = 0;
+                document.getElementById('notice-main').scrollTop = 0;
+                if (notices.length > 0) {
+                    showNoticeDetail(notices[0].id);
+                }
+            }
+            if (pageName === 'reward') {
+                document.getElementById('reward-nav').scrollTop = 0;
+                document.getElementById('reward-main').scrollTop = 0;
+                if (rewards.length > 0) {
+                    showRewardDetail(rewards[0].id);
+                }
             }
         }
 
-        async function fetchServerStatus() {
-            try {
-                const response = await fetch('https://motdbe.blackbe.work/api/java?host=play.simpfun.cn:31313');
-                const data = await response.json();
-                
-                if (data.status === 'online') {
-                    updateStatus(true, data);
-                } else {
+        document.getElementById('nav').addEventListener('click', function(e) {
+            e.preventDefault();
+            var page = e.target.getAttribute('data-page');
+            if (page) switchPage(page);
+        });
+
+        // ===== 服务器状态 =====
+        function fetchServerStatus() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'https://motdbe.blackbe.work/api/java?host=play.simpfun.cn:31313', true);
+            xhr.timeout = 8000;
+            xhr.onload = function() {
+                try {
+                    var data = JSON.parse(xhr.responseText);
+                    if (data.status === 'online') {
+                        updateStatus(true, data);
+                    } else {
+                        updateStatus(false);
+                    }
+                } catch (e) {
                     updateStatus(false);
                 }
-            } catch (error) {
-                console.error('获取状态失败:', error);
-                updateStatus(false);
-            }
+            };
+            xhr.onerror = function() { updateStatus(false); };
+            xhr.ontimeout = function() { updateStatus(false); };
+            xhr.send();
         }
 
-        function updateStatus(online, data = null) {
-            const mainStatus = document.getElementById('main-status');
-            const heroStatus = document.getElementById('hero-status');
-            
+        function updateStatus(online, data) {
+            data = data || null;
+            var heroStatus = document.getElementById('hero-status');
+            var statusLabel = document.getElementById('status-label');
+            var playerListItems = document.getElementById('player-list-items');
+
             if (online && data) {
                 if (data.favicon) {
-                    const headerLogo = document.getElementById('header-logo');
-                    const heroLogo = document.getElementById('hero-logo');
-                    const favicon = document.getElementById('favicon');
+                    var headerLogo = document.getElementById('header-logo');
+                    var favicon = document.getElementById('favicon');
                     if (headerLogo) headerLogo.src = data.favicon;
-                    if (heroLogo) heroLogo.src = data.favicon;
                     if (favicon) favicon.href = data.favicon;
                 }
-                
-                mainStatus.innerHTML = '<span class="indicator-dot online"></span><span class="indicator-text">在线</span>';
-                heroStatus.innerHTML = '<span class="status-dot online"></span><span class="status-text">服务器在线</span>';
-                
+                heroStatus.querySelector('.status-dot').className = 'status-dot online';
+                statusLabel.textContent = '服务器在线';
                 document.getElementById('hero-players').textContent = data.online;
-                document.getElementById('card-players').textContent = data.online;
-                document.getElementById('card-ping').textContent = data.delay;
                 document.getElementById('hero-ping').textContent = data.delay;
-                
-                const percentage = (data.online / data.max) * 100;
-                document.getElementById('player-bar').style.width = percentage + '%';
-                
-                let quality = '优秀';
-                if (data.delay > 100) quality = '一般';
-                if (data.delay > 200) quality = '较差';
-                document.getElementById('ping-quality').textContent = quality;
-                
-                updatePlayersList(data.sample);
+
+                if (data.players && data.players.list && data.players.list.length > 0) {
+                    var listHtml = '';
+                    for (var i = 0; i < data.players.list.length; i++) {
+                        var p = data.players.list[i];
+                        listHtml += '<span class="player-name">' + (p.name || p) + '</span>';
+                    }
+                    playerListItems.innerHTML = listHtml;
+                } else {
+                    playerListItems.innerHTML = '<span class="player-empty">暂无在线玩家</span>';
+                }
             } else {
-                mainStatus.innerHTML = '<span class="indicator-dot offline"></span><span class="indicator-text">离线</span>';
-                heroStatus.innerHTML = '<span class="status-dot offline"></span><span class="status-text">服务器离线</span>';
+                heroStatus.querySelector('.status-dot').className = 'status-dot offline';
+                statusLabel.textContent = '服务器离线';
+                playerListItems.innerHTML = '<span class="player-empty">服务器离线</span>';
             }
         }
 
-        function updatePlayersList(players) {
-            const container = document.getElementById('players-list');
-            if (players && players.length > 0) {
-                container.innerHTML = players.map(player => `
-                    <div class="player-item">
-                        <span class="player-name">${player.name}</span>
-                        <span class="player-time">在线中</span>
-                    </div>
-                `).join('');
-            } else {
-                container.innerHTML = '<div class="player-item"><span class="player-name">暂无玩家在线</span></div>';
-            }
-        }
-
-        function copyIP() {
-            const ip = 'mc.huojiao.fun';
-            navigator.clipboard.writeText(ip).then(() => {
-                showNotification('服务器地址已复制!');
-            });
-        }
-
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.className = 'notification';
-            notification.innerHTML = `<span>✓</span> ${message}`;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => notification.classList.add('show'), 10);
-            setTimeout(() => notification.classList.remove('show'), 3000);
-            setTimeout(() => notification.remove(), 3500);
-        }
-
-        initParticles();
+        // ===== 初始化 =====
+        renderNoticeSidebar();
+        renderRewardSidebar();
         fetchServerStatus();
         setInterval(fetchServerStatus, 10000);
     </script>
