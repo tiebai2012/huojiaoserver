@@ -325,6 +325,13 @@
         });
 
         // ===== 服务器状态 =====
+        var STAT_CACHE_KEY = 'huojiao_server_cache';
+        var statCache = null;
+        try {
+            var cached = localStorage.getItem(STAT_CACHE_KEY);
+            if (cached) statCache = JSON.parse(cached);
+        } catch (e) {}
+
         function fetchServerStatus() {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', 'https://motdbe.blackbe.work/api/java?host=play.simpfun.cn:31313', true);
@@ -333,17 +340,26 @@
                 try {
                     var data = JSON.parse(xhr.responseText);
                     if (data.status === 'online') {
+                        localStorage.setItem(STAT_CACHE_KEY, JSON.stringify(data));
                         updateStatus(true, data);
                     } else {
-                        updateStatus(false);
+                        fallbackOrOffline();
                     }
                 } catch (e) {
-                    updateStatus(false);
+                    fallbackOrOffline();
                 }
             };
-            xhr.onerror = function() { updateStatus(false); };
-            xhr.ontimeout = function() { updateStatus(false); };
+            xhr.onerror = function() { fallbackOrOffline(); };
+            xhr.ontimeout = function() { fallbackOrOffline(); };
             xhr.send();
+        }
+
+        function fallbackOrOffline() {
+            if (statCache) {
+                updateStatus(true, statCache);
+            } else {
+                updateStatus(false);
+            }
         }
 
         function updateStatus(online, data) {
@@ -361,22 +377,46 @@
                 }
                 heroStatus.querySelector('.status-dot').className = 'status-dot online';
                 statusLabel.textContent = '服务器在线';
-                document.getElementById('hero-players').textContent = data.online;
-                document.getElementById('hero-ping').textContent = data.delay;
+                document.getElementById('hero-players').textContent = data.online || '--';
+                document.getElementById('hero-ping').textContent = (typeof data.delay !== 'undefined') ? data.delay : '--';
 
-                if (data.players && data.players.list && data.players.list.length > 0) {
+                var playerList = [];
+                // 兼容两种 API 格式：顶层 sample 或 data.players.sample
+                if (data.sample && data.sample.length) {
+                    playerList = data.sample;
+                } else if (data.players) {
+                    if (data.players.sample && data.players.sample.length) {
+                        playerList = data.players.sample;
+                    } else if (data.players.list && data.players.list.length) {
+                        playerList = data.players.list;
+                    }
+                }
+                var delay = (typeof data.delay !== 'undefined') ? data.delay : null;
+                if (playerList.length > 0) {
                     var listHtml = '';
-                    for (var i = 0; i < data.players.list.length; i++) {
-                        var p = data.players.list[i];
-                        listHtml += '<span class="player-name">' + (p.name || p) + '</span>';
+                    for (var i = 0; i < playerList.length; i++) {
+                        var p = playerList[i];
+                        var pname = p.name || p;
+                        listHtml +=
+                            '<div class="player-card">' +
+                            '<img class="player-card-avatar" src="https://minotar.net/avatar/' + encodeURIComponent(pname) + '/80" alt="' + pname + '" loading="lazy" onerror="this.src=\'https://visage.surgeplay.com/face/80/' + encodeURIComponent(pname) + '\'" />' +
+                            '<div class="player-card-info">' +
+                            '<span class="player-card-name">' + pname + '</span>' +
+                            (delay != null ? '<span class="player-card-ping">' + delay + ' ms</span>' : '') +
+                            '</div>' +
+                            '</div>';
                     }
                     playerListItems.innerHTML = listHtml;
+                } else if (data.online > 0) {
+                    playerListItems.innerHTML = '<span class="player-empty">' + data.online + ' 名玩家在线</span>';
                 } else {
                     playerListItems.innerHTML = '<span class="player-empty">暂无在线玩家</span>';
                 }
             } else {
                 heroStatus.querySelector('.status-dot').className = 'status-dot offline';
                 statusLabel.textContent = '服务器离线';
+                document.getElementById('hero-players').textContent = '--';
+                document.getElementById('hero-ping').textContent = '--';
                 playerListItems.innerHTML = '<span class="player-empty">服务器离线</span>';
             }
         }
@@ -384,6 +424,7 @@
         // ===== 初始化 =====
         renderNoticeSidebar();
         renderRewardSidebar();
+        updateStatus(false);
         fetchServerStatus();
         setInterval(fetchServerStatus, 10000);
     </script>
