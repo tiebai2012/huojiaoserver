@@ -219,14 +219,36 @@
         // ==================================================================
         var rewards = [
             {
-                id: 1,
+                id: 4,
                 month: '2026年5月',
-                player: 'li2012China',
                 items: [
-                    { title: '最佳玩家', desc: '综合表现最优' },
-                    { title: '上线时间最长', desc: '全服在线时长第一' }
-                ],
-                skin: 'skin-li2012china.png'
+                    { title: '最佳玩家', desc: '综合表现最优', player: 'li2012China', skin: 'skin-li2012china.png' },
+                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'li2012China', skin: 'skin-li2012china.png' },
+                    { title: '特殊贡献', desc: '帮助制作服务器官网', player: 'li2012China', skin: 'skin-li2012china.png' }
+                ]
+            },
+            {
+                id: 3,
+                month: '2026年4月',
+                items: [
+                    { title: '最佳玩家', desc: '综合表现最优', player: 'nitiaoxinwo', skin: 'skin-nitiaoxinwo.png' },
+                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'nitiaoxinwo', skin: 'skin-nitiaoxinwo.png' }
+                ]
+            },
+            {
+                id: 2,
+                month: '2026年3月',
+                items: [
+                    { title: '最佳玩家', desc: '综合表现最优', player: 'Blsdxz', skin: 'skin-blsdxz.png' },
+                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'Blsdxz', skin: 'skin-blsdxz.png' }
+                ]
+            },
+            {
+                id: 1,
+                month: '2026年2月',
+                items: [
+                    { title: '特殊贡献', desc: '服主开启了新的存档', player: 'tiebai', skin: 'skin-tiebai.png' }
+                ]
             }
         ];
 
@@ -272,14 +294,14 @@
             var itemsHtml = '';
             for (var k = 0; k < reward.items.length; k++) {
                 var item = reward.items[k];
+                var p = item.player || reward.player || '';
+                var s = item.skin || reward.skin || '';
                 itemsHtml +=
                     '<div class="reward-item">' +
                     '<h3 class="reward-item-title">' + item.title + '</h3>' +
-                    '<p class="reward-item-player">' + reward.player + '</p>' +
+                    (p ? '<p class="reward-item-player">' + p + '</p>' : '') +
                     '<p class="reward-item-desc">' + item.desc + '</p>' +
-                    '<div class="reward-skin-preview">' +
-                    '<img src="' + reward.skin + '" alt="' + reward.player + ' 皮肤3D预览" class="reward-skin-img" />' +
-                    '</div>' +
+                    (s ? '<div class="reward-skin-preview"><img src="' + s + '" alt="' + p + ' 皮肤3D预览" class="reward-skin-img" /></div>' : '') +
                     '</div>';
             }
             main.innerHTML =
