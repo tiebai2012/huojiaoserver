@@ -609,6 +609,25 @@ body {
     background: #e05a80;
 }
 
+/* ===== 敬请期待 ===== */
+.coming-soon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    gap: 16px;
+}
+
+.coming-soon-icon {
+    font-size: 48px;
+}
+
+.coming-soon-text {
+    font-size: 18px;
+    color: var(--text-muted);
+}
+
 /* ===== 服务器内部提示 ===== */
 .server-internal-tip {
     margin-top: 10px;
