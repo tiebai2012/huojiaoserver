@@ -498,7 +498,7 @@
                 heroStatus.querySelector('.status-dot').className = 'status-dot online';
                 statusLabel.textContent = '服务器在线';
                 document.getElementById('server-internal-tip').style.display = 'block'; // no-op, always shown
-                document.getElementById('hero-players').textContent = data.online || '--';
+                document.getElementById('hero-players').textContent = (typeof data.online === 'number') ? data.online : '--';
                 document.getElementById('hero-ping').textContent = (typeof data.delay !== 'undefined') ? data.delay : '--';
 
                 var playerList = [];
