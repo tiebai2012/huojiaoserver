@@ -567,19 +567,54 @@ body {
     background: var(--bg-light);
 }
 
-/* ===== 公众号 ===== */
-.wechat-desc {
-    color: var(--text-muted);
-    font-size: 15px;
-    margin-bottom: 28px;
+/* ===== 媒体页 ===== */
+.media-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
 }
 
-.wechat-qrcode {
+.media-item {
+    text-align: center;
+}
+
+.media-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.media-qrcode {
     display: block;
-    width: 220px;
+    width: 180px;
     height: auto;
     margin: 0 auto;
     border: 1px solid var(--border);
+}
+
+.media-bilibili-btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #fb7299;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s ease;
+}
+
+.media-bilibili-btn:hover {
+    background: #e05a80;
+}
+
+/* ===== 服务器内部提示 ===== */
+.server-internal-tip {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-align: center;
 }
 
 /* ===== 响应式 ===== */

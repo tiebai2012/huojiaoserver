@@ -19,7 +19,7 @@
                 <a href="#" data-page="home" class="active">首页</a>
                 <a href="#" data-page="reward">奖励</a>
                 <a href="#" data-page="notice">公告</a>
-                <a href="#" data-page="wechat">公众号</a>
+                <a href="#" data-page="media">媒体</a>
             </nav>
         </div>
     </header>
@@ -48,6 +48,7 @@
                 <span class="status-dot"></span>
                 <span id="status-label">正在获取状态...</span>
             </div>
+            <p class="server-internal-tip" id="server-internal-tip" style="display:block;">服务器只对内部开放</p>
             <div class="player-list" id="player-list">
                 <h3 class="player-list-title">在线玩家列表</h3>
                 <div class="player-list-items" id="player-list-items">
@@ -89,12 +90,20 @@
         </div>
     </section>
 
-    <!-- 公众号 -->
-    <section class="page" id="page-wechat">
+    <!-- 媒体 -->
+    <section class="page" id="page-media">
         <div class="page-content">
-            <h2 class="page-title">公众号</h2>
-            <p class="wechat-desc">关注公众号，获取最新整合包与服务器动态</p>
-            <img src="wechat-qrcode.png" alt="火教公众号二维码" class="wechat-qrcode" />
+            <h2 class="page-title">媒体</h2>
+            <div class="media-links">
+                <div class="media-item">
+                    <p class="media-label">微信公众号</p>
+                    <img src="wechat-qrcode.png" alt="火教公众号二维码" class="media-qrcode" />
+                </div>
+                <div class="media-item">
+                    <p class="media-label">哔哩哔哩</p>
+                    <a href="https://space.bilibili.com/3546599917620078" target="_blank" rel="noopener noreferrer" class="media-bilibili-btn">前往 Bilibili 主页</a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -399,6 +408,7 @@
                 }
                 heroStatus.querySelector('.status-dot').className = 'status-dot online';
                 statusLabel.textContent = '服务器在线';
+                document.getElementById('server-internal-tip').style.display = 'block'; // no-op, always shown
                 document.getElementById('hero-players').textContent = data.online || '--';
                 document.getElementById('hero-ping').textContent = (typeof data.delay !== 'undefined') ? data.delay : '--';
 
@@ -437,6 +447,7 @@
             } else {
                 heroStatus.querySelector('.status-dot').className = 'status-dot offline';
                 statusLabel.textContent = '服务器离线';
+                document.getElementById('server-internal-tip').style.display = 'block';
                 document.getElementById('hero-players').textContent = '--';
                 document.getElementById('hero-ping').textContent = '--';
                 playerListItems.innerHTML = '<span class="player-empty">服务器离线</span>';
