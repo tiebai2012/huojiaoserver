@@ -63,9 +63,35 @@
     <section class="page" id="page-players">
         <div class="page-content">
             <h2 class="page-title">玩家</h2>
-            <div class="coming-soon">
-                <span class="coming-soon-icon">🔧</span>
-                <p class="coming-soon-text">敬请期待</p>
+            <div class="player-cards">
+                <div class="player-profile-card">
+                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/tiebai" alt="tiebai 皮肤" loading="lazy" />
+                    <div class="player-profile-info">
+                        <span class="player-profile-name">tiebai</span>
+                        <span class="player-profile-role">服务器服主</span>
+                    </div>
+                </div>
+                <div class="player-profile-card">
+                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/li2012China" alt="li2012China 皮肤" loading="lazy" />
+                    <div class="player-profile-info">
+                        <span class="player-profile-name">li2012China</span>
+                        <span class="player-profile-role">为服务器间和平做出重要贡献</span>
+                    </div>
+                </div>
+                <div class="player-profile-card">
+                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/wangkaikai111" alt="wangkaikai111 皮肤" loading="lazy" />
+                    <div class="player-profile-info">
+                        <span class="player-profile-name">wangkaikai111</span>
+                        <span class="player-profile-role">参与建设2号线车站</span>
+                    </div>
+                </div>
+                <div class="player-profile-card">
+                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/lvbaoshigreen" alt="lvbaoshigreen 皮肤" loading="lazy" />
+                    <div class="player-profile-info">
+                        <span class="player-profile-name">lvbaoshigreen</span>
+                        <span class="player-profile-role">烧饼生存服务器服主·建设烧饼快线</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -243,34 +269,34 @@
                 id: 4,
                 month: '2026年5月',
                 items: [
-                    { title: '最佳玩家', desc: '综合表现最优', player: 'li2012China', skin: 'img/skin-li2012china.png' },
-                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'li2012China', skin: 'img/skin-li2012china.png' },
-                    { title: '特殊贡献', desc: '帮助制作服务器官网', player: 'li2012China', skin: 'img/skin-li2012china.png' }
+                    { title: '最佳玩家', desc: '综合表现最优', player: 'li2012China' },
+                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'li2012China' },
+                    { title: '特殊贡献', desc: '帮助制作服务器官网', player: 'li2012China' }
                 ]
             },
             {
                 id: 3,
                 month: '2026年4月',
                 items: [
-                    { title: '最佳玩家', desc: '综合表现最优', player: 'nitiaoxinwo', skin: 'img/skin-nitiaoxinwo.png' },
-                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'nitiaoxinwo', skin: 'img/skin-nitiaoxinwo.png' }
+                    { title: '最佳玩家', desc: '综合表现最优', player: 'nitiaoxinwo' },
+                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'nitiaoxinwo' }
                 ]
             },
             {
                 id: 2,
                 month: '2026年3月',
                 items: [
-                    { title: '最佳玩家', desc: '综合表现最优', player: 'Blsdxz', skin: 'img/skin-blsdxz.png' },
-                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'Blsdxz', skin: 'img/skin-blsdxz.png' }
+                    { title: '最佳玩家', desc: '综合表现最优', player: 'Blsdxz' },
+                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'Blsdxz' }
                 ]
             },
             {
                 id: 1,
                 month: '2026年2月',
                 items: [
-                    { title: '特殊贡献', desc: '服主开启了新的存档', player: 'tiebai', skin: 'img/skin-tiebai.png' },
-                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'nitiaoxinwo', skin: 'img/skin-nitiaoxinwo.png' },
-                    { title: '最佳玩家', desc: '综合表现最优', player: 'diannaob', skin: 'img/skin-diannaob.png' }
+                    { title: '特殊贡献', desc: '服主开启了新的存档', player: 'tiebai' },
+                    { title: '上线时间最长', desc: '全服在线时长第一', player: 'nitiaoxinwo' },
+                    { title: '最佳玩家', desc: '综合表现最优', player: 'diannaob' }
                 ]
             }
         ];
@@ -318,13 +344,13 @@
             for (var k = 0; k < reward.items.length; k++) {
                 var item = reward.items[k];
                 var p = item.player || reward.player || '';
-                var s = item.skin || reward.skin || '';
+                var skinUrl = p ? 'https://visage.surgeplay.com/full/200/' + encodeURIComponent(p) : '';
                 itemsHtml +=
                     '<div class="reward-item">' +
                     '<h3 class="reward-item-title">' + item.title + '</h3>' +
                     (p ? '<p class="reward-item-player">' + p + '</p>' : '') +
                     '<p class="reward-item-desc">' + item.desc + '</p>' +
-                    (s ? '<div class="reward-skin-preview"><img src="' + s + '" alt="' + p + ' 皮肤3D预览" class="reward-skin-img" /></div>' : '') +
+                    (p ? '<div class="reward-skin-preview"><img src="' + skinUrl + '" alt="' + p + ' 皮肤" class="reward-skin-img" loading="lazy" /></div>' : '') +
                     '</div>';
             }
             main.innerHTML =

@@ -609,6 +609,59 @@ body {
     background: #e05a80;
 }
 
+/* ===== 玩家卡片 ===== */
+.player-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    padding: 24px 0;
+}
+
+.player-profile-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 28px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s ease;
+    min-width: 200px;
+}
+
+.player-profile-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.player-profile-skin {
+    width: 120px;
+    height: auto;
+    image-rendering: pixelated;
+    border-radius: 4px;
+}
+
+.player-profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.player-profile-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.player-profile-role {
+    font-size: 13px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
 /* ===== 敬请期待 ===== */
 .coming-soon {
     display: flex;
