@@ -28,6 +28,32 @@
     <!-- 首页 -->
     <section class="page active" id="page-home">
         <div class="page-content">
+            <div class="countdown-wrapper">
+                <div class="countdown-block">
+                    <div class="countdown-left">
+                        <p class="countdown-label">期末考试开始</p>
+                        <p class="countdown-sheng">还剩</p>
+                    </div>
+                    <div class="countdown-digits" id="cd-exam">
+                        <span class="cd-d">0</span><span class="cd-unit">天</span>
+                        <span class="cd-h">0</span><span class="cd-unit">时</span>
+                        <span class="cd-m">0</span><span class="cd-unit">分</span>
+                        <span class="cd-s">0</span><span class="cd-unit">秒</span>
+                    </div>
+                </div>
+                <div class="countdown-block">
+                    <div class="countdown-left">
+                        <p class="countdown-label">暑假开始</p>
+                        <p class="countdown-sheng">还剩</p>
+                    </div>
+                    <div class="countdown-digits" id="cd-summer">
+                        <span class="cd-d">0</span><span class="cd-unit">天</span>
+                        <span class="cd-h">0</span><span class="cd-unit">时</span>
+                        <span class="cd-m">0</span><span class="cd-unit">分</span>
+                        <span class="cd-s">0</span><span class="cd-unit">秒</span>
+                    </div>
+                </div>
+            </div>
             <h1>火教集团附属服务器</h1>
             <div class="hero-stats">
                 <div class="stat-item">
@@ -451,6 +477,42 @@
             var page = e.target.getAttribute('data-page');
             if (page) switchPage(page);
         });
+
+        // ===== 倒计时 =====
+        var targets = {
+            exam: new Date('2026-06-30T08:00:00'),
+            summer: new Date('2026-07-07T09:30:00')
+        };
+
+        function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+        function updateCountdown(id, target) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var diff = target - Date.now();
+            if (diff <= 0) {
+                el.querySelector('.cd-d').textContent = '0';
+                el.querySelector('.cd-h').textContent = '0';
+                el.querySelector('.cd-m').textContent = '0';
+                el.querySelector('.cd-s').textContent = '0';
+                return;
+            }
+            var d = Math.floor(diff / 86400000);
+            var h = Math.floor((diff % 86400000) / 3600000);
+            var m = Math.floor((diff % 3600000) / 60000);
+            var s = Math.floor((diff % 60000) / 1000);
+            el.querySelector('.cd-d').textContent = pad(d);
+            el.querySelector('.cd-h').textContent = pad(h);
+            el.querySelector('.cd-m').textContent = pad(m);
+            el.querySelector('.cd-s').textContent = pad(s);
+        }
+
+        function tick() {
+            updateCountdown('cd-exam', targets.exam);
+            updateCountdown('cd-summer', targets.summer);
+        }
+        tick();
+        setInterval(tick, 1000);
 
         // ===== 服务器状态 =====
         var STAT_CACHE_KEY = 'huojiao_server_cache';
