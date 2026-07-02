@@ -8,34 +8,38 @@
     <link rel="icon" id="favicon" type="image/png" href="">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* 倒计时外层容器，纵向排列，两个倒计时强制上下分行 */
         .countdown-wrapper {
             display: flex;
             flex-direction: column;
             gap: 16px;
+            width: 100%;
         }
+        /* 单个倒计时模块：内部左右横向排布，文字禁止自动换行 */
         .countdown-block {
             display: flex;
             align-items: center;
             gap: 12px;
             white-space: nowrap;
+            width: 100%;
         }
         .countdown-left {
             display: inline-block;
-            white-space: nowrap;
         }
-        /* 关键修改：标签横向排列 */
         .countdown-label,
         .countdown-sheng {
             display: inline;
             margin: 0 4px;
         }
-        /* 添加分隔竖线 */
-        .countdown-sheng::before {
-            content: "|";
-            margin-right: 6px;
-        }
         .countdown-digits {
             display: inline-block;
+        }
+        /* 移动端小屏幕自动换行，防止溢出 */
+        @media (max-width: 640px) {
+            .countdown-block {
+                flex-wrap: wrap;
+                white-space: normal;
+            }
         }
     </style>
 </head>
@@ -63,8 +67,8 @@
                 <!-- 第一个倒计时：单独一行 -->
                 <div class="countdown-block">
                     <div class="countdown-left">
-                        <span class="countdown-label">距期末考试开始</span>
-                        <span class="countdown-sheng">还剩</span>
+                        <p class="countdown-label">距期末考试开始</p>
+                        <p class="countdown-sheng">还剩</p>
                     </div>
                     <div class="countdown-digits" id="cd-exam">
                         <span class="cd-d">0</span><span class="cd-unit">天</span>
@@ -76,8 +80,8 @@
                 <!-- 第二个倒计时：单独一行 -->
                 <div class="countdown-block">
                     <div class="countdown-left">
-                        <span class="countdown-label">距暑假开始</span>
-                        <span class="countdown-sheng">还剩</span>
+                        <p class="countdown-label">距暑假开始</p>
+                        <p class="countdown-sheng">还剩</p>
                     </div>
                     <div class="countdown-digits" id="cd-summer">
                         <span class="cd-d">0</span><span class="cd-unit">天</span>
@@ -123,5 +127,4 @@
         <div class="page-content">
             <h2 class="page-title">玩家</h2>
             <div class="player-cards">
-                <div class="player-profile-card">
-                    <img class="player-profile-skin" src="https://visage.surg
+             
