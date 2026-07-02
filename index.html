@@ -21,11 +21,18 @@
         }
         .countdown-left {
             display: inline-block;
+            white-space: nowrap;
         }
+        /* 关键修改：标签横向排列 */
         .countdown-label,
         .countdown-sheng {
             display: inline;
             margin: 0 4px;
+        }
+        /* 添加分隔竖线 */
+        .countdown-sheng::before {
+            content: "|";
+            margin-right: 6px;
         }
         .countdown-digits {
             display: inline-block;
@@ -56,8 +63,8 @@
                 <!-- 第一个倒计时：单独一行 -->
                 <div class="countdown-block">
                     <div class="countdown-left">
-                        <p class="countdown-label">距期末考试开始</p>
-                        <p class="countdown-sheng">还剩</p>
+                        <span class="countdown-label">距期末考试开始</span>
+                        <span class="countdown-sheng">还剩</span>
                     </div>
                     <div class="countdown-digits" id="cd-exam">
                         <span class="cd-d">0</span><span class="cd-unit">天</span>
@@ -69,8 +76,8 @@
                 <!-- 第二个倒计时：单独一行 -->
                 <div class="countdown-block">
                     <div class="countdown-left">
-                        <p class="countdown-label">距暑假开始</p>
-                        <p class="countdown-sheng">还剩</p>
+                        <span class="countdown-label">距暑假开始</span>
+                        <span class="countdown-sheng">还剩</span>
                     </div>
                     <div class="countdown-digits" id="cd-summer">
                         <span class="cd-d">0</span><span class="cd-unit">天</span>
@@ -117,7 +124,4 @@
             <h2 class="page-title">玩家</h2>
             <div class="player-cards">
                 <div class="player-profile-card">
-                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/tiebai" alt="tiebai 皮肤" loading="lazy" />
-                    <div class="player-profile-info">
-                        <span class="player-profile-name">tiebai</span>
-                   
+                    <img class="player-profile-skin" src="https://visage.surg
