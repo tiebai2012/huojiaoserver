@@ -143,58 +143,6 @@ body {
 }
 
 /* ===== 首页 ===== */
-/* 倒计时 */
-.countdown-wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    margin-bottom: 28px;
-    flex-wrap: nowrap;
-}
-
-.countdown-block {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    background: #ffffff;
-    padding: 16px 24px 16px 20px;
-}
-
-.countdown-left {
-    text-align: left;
-    min-width: 140px;
-}
-
-.countdown-label {
-    font-size: 18px;
-    color: #222;
-    margin: 0;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-align: right;
-}
-
-.countdown-sheng {
-    font-size: 18px;
-    color: #222;
-    margin: 4px 0 0 0;
-    font-weight: 600;
-    text-align: right;
-}
-
-.countdown-sheng::before {
-    content: '';
-    border-left: 3px solid #dc2626;
-    margin-right: 6px;
-}
-
-.countdown-digits {
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
-    font-family: 'Consolas', 'Courier New', monospace;
-}
 
 .cd-d, .cd-h, .cd-m, .cd-s {
     display: inline-block;
@@ -858,38 +806,4 @@ body {
         font-size: 16px;
     }
 
-    .countdown-wrapper {
-        gap: 12px;
-        flex-wrap: nowrap;
-    }
-
-    .countdown-block {
-        flex: 1;
-        min-width: 0;
-        align-items: center;
-        gap: 10px;
-        padding: 14px 12px;
-    }
-
-    .countdown-left {
-        min-width: 0;
-        flex-shrink: 0;
-    }
-
-    .countdown-label {
-        font-size: 15px;
-    }
-
-    .countdown-sheng {
-        font-size: 15px;
-    }
-
-    .cd-d, .cd-h, .cd-m, .cd-s {
-        font-size: 32px;
-        min-width: 38px;
-    }
-
-    .cd-unit {
-        font-size: 15px;
-    }
 }

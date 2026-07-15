@@ -28,20 +28,6 @@
     <!-- 首页 -->
     <section class="page active" id="page-home">
         <div class="page-content">
-            <div class="countdown-wrapper">
-                <div class="countdown-block">
-                    <div class="countdown-left">
-                        <p class="countdown-label">暑假开始</p>
-                        <p class="countdown-sheng">还剩</p>
-                    </div>
-                    <div class="countdown-digits" id="cd-summer">
-                        <span class="cd-d">0</span><span class="cd-unit">天</span>
-                        <span class="cd-h">0</span><span class="cd-unit">时</span>
-                        <span class="cd-m">0</span><span class="cd-unit">分</span>
-                        <span class="cd-s">0</span><span class="cd-unit">秒</span>
-                    </div>
-                </div>
-            </div>
             <h1>火教集团附属服务器</h1>
             <div class="hero-stats">
                 <div class="stat-item">
@@ -86,24 +72,10 @@
                     </div>
                 </div>
                 <div class="player-profile-card">
-                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/li2012China" alt="li2012China 皮肤" loading="lazy" />
-                    <div class="player-profile-info">
-                        <span class="player-profile-name">li2012China</span>
-                        <span class="player-profile-role">为服务器间和平做出重要贡献</span>
-                    </div>
-                </div>
-                <div class="player-profile-card">
                     <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/wangkaikai111" alt="wangkaikai111 皮肤" loading="lazy" />
                     <div class="player-profile-info">
                         <span class="player-profile-name">wangkaikai111</span>
                         <span class="player-profile-role">参与建设2号线车站</span>
-                    </div>
-                </div>
-                <div class="player-profile-card">
-                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/lvbaoshigreen" alt="lvbaoshigreen 皮肤" loading="lazy" />
-                    <div class="player-profile-info">
-                        <span class="player-profile-name">lvbaoshigreen</span>
-                        <span class="player-profile-role">烧饼生存服务器服主 建设烧饼快线</span>
                     </div>
                 </div>
                 <div class="player-profile-card">
@@ -141,20 +113,7 @@
                         <span class="player-profile-role">普通玩家</span>
                     </div>
                 </div>
-                <div class="player-profile-card">
-                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/Blsdxz" alt="Blsdxz 皮肤" loading="lazy" />
-                    <div class="player-profile-info">
-                        <span class="player-profile-name">Blsdxz</span>
-                        <span class="player-profile-role">滚木</span>
-                    </div>
-                </div>
-                <div class="player-profile-card">
-                    <img class="player-profile-skin" src="https://visage.surgeplay.com/full/200/diannaob" alt="diannaob 皮肤" loading="lazy" />
-                    <div class="player-profile-info">
-                        <span class="player-profile-name">diannaob</span>
-                        <span class="player-profile-role">滚木</span>
-                    </div>
-                </div>
+
             </div>
         </div>
     </section>
@@ -465,42 +424,6 @@
             var page = e.target.getAttribute('data-page');
             if (page) switchPage(page);
         });
-
-        // ===== 倒计时 =====
-        var targets = {
-            exam: new Date('2026-06-30T08:00:00'),
-            summer: new Date('2026-07-07T09:30:00')
-        };
-
-        function pad(n) { return (n < 10 ? '0' : '') + n; }
-
-        function updateCountdown(id, target) {
-            var el = document.getElementById(id);
-            if (!el) return;
-            var diff = target - Date.now();
-            if (diff <= 0) {
-                el.querySelector('.cd-d').textContent = '0';
-                el.querySelector('.cd-h').textContent = '0';
-                el.querySelector('.cd-m').textContent = '0';
-                el.querySelector('.cd-s').textContent = '0';
-                return;
-            }
-            var d = Math.floor(diff / 86400000);
-            var h = Math.floor((diff % 86400000) / 3600000);
-            var m = Math.floor((diff % 3600000) / 60000);
-            var s = Math.floor((diff % 60000) / 1000);
-            el.querySelector('.cd-d').textContent = pad(d);
-            el.querySelector('.cd-h').textContent = pad(h);
-            el.querySelector('.cd-m').textContent = pad(m);
-            el.querySelector('.cd-s').textContent = pad(s);
-        }
-
-        function tick() {
-            updateCountdown('cd-exam', targets.exam);
-            updateCountdown('cd-summer', targets.summer);
-        }
-        tick();
-        setInterval(tick, 1000);
 
         // ===== 服务器状态 =====
         var STAT_CACHE_KEY = 'huojiao_server_cache';
