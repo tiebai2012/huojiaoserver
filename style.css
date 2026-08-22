@@ -78,6 +78,97 @@ body {
     color: var(--text);
 }
 
+.modpack-btn {
+    font-size: 12px;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 0;
+    padding: 2px 8px;
+    margin-left: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s, color 0.2s;
+}
+
+.modpack-btn:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* 弹窗 */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-box {
+    background: #fff;
+    border-radius: 0;
+    padding: 32px 36px 28px;
+    position: relative;
+    min-width: 280px;
+    max-width: 380px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    font-size: 22px;
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: #333;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #222;
+    margin: 0 0 16px;
+}
+
+.modal-msg {
+    font-size: 15px;
+    color: #333;
+    margin: 0 0 8px;
+    line-height: 1.6;
+}
+
+.modal-download-btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 10px 48px;
+    background: #2563eb;
+    color: #fff;
+    border-radius: 0;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.modal-download-btn:hover {
+    background: #1d4ed8;
+}
+}
+
 .nav {
     display: flex;
     gap: 0;

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>火教集团附属服务器</title>
-    <meta name="description" content="火教集团附属服务器" />
+    <title>火城mtr服务器</title>
+    <meta name="description" content="火城mtr服务器" />
     <link rel="icon" id="favicon" type="image/png" href="">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,7 +13,8 @@
         <div class="container">
             <div class="logo">
                 <img src="" alt="Logo" class="server-logo" id="header-logo" />
-                <span class="logo-text">火教集团附属服务器</span>
+                <span class="logo-text">火城mtr服务器</span>
+                <a href="javascript:void(0)" class="modpack-btn" id="modpack-trigger">整合包下载</a>
             </div>
             <nav class="nav" id="nav">
                 <a href="#" data-page="home" class="active">首页</a>
@@ -28,7 +29,7 @@
     <!-- 首页 -->
     <section class="page active" id="page-home">
         <div class="page-content">
-            <h1>火教集团附属服务器</h1>
+            <h1>火城mtr服务器</h1>
             <div class="hero-stats">
                 <div class="stat-item">
                     <span class="stat-value" id="hero-players">--</span>
@@ -213,12 +214,12 @@
                 id: 8,
                 title: '祝贺烧饼生存服务器建服一周年',
                 date: '2026-06-20',
-                content: '<p>值烧饼生存服务器开服一周年之际，火教集团附属服务器全体玩家与管理特此送上热烈祝贺！</p>' +
-                    '<p>听闻烧饼服全体玩家合力完成蘑菇岛周年纪念碑、海西村纪念碑、杂烩集团驻服交流馆、烧饼地铁四五号线一期以及广场周年蛋糕五大周年献礼工程，我们由衷为烧饼服取得的成果感到欣喜，祝愿烧饼生存服务器往后长久平稳运营，玩家络绎不绝，持续打造更多精彩建筑，火教集团附属服务器也期待日后与烧饼服多多开展跨服联动，携手共创更好的游戏游玩氛围！</p>'
+                content: '<p>值烧饼生存服务器开服一周年之际，火城mtr服务器全体玩家与管理特此送上热烈祝贺！</p>' +
+                    '<p>听闻烧饼服全体玩家合力完成蘑菇岛周年纪念碑、海西村纪念碑、杂烩集团驻服交流馆、烧饼地铁四五号线一期以及广场周年蛋糕五大周年献礼工程，我们由衷为烧饼服取得的成果感到欣喜，祝愿烧饼生存服务器往后长久平稳运营，玩家络绎不绝，持续打造更多精彩建筑，火城mtr服务器也期待日后与烧饼服多多开展跨服联动，携手共创更好的游戏游玩氛围！</p>'
             },
             {
                 id: 7,
-                title: '火教集团附属服务器整合包更新日志',
+                title: '火城mtr服务器整合包更新日志',
                 date: '2026-06-14',
                 content: '<h3>V3.4.0</h3>' +
                     '<p>添加了Axiom，方便建造</p>' +
@@ -574,6 +575,29 @@
         updateStatus(false);
         fetchServerStatus();
         setInterval(fetchServerStatus, 10000);
+    </script>
+
+    <!-- 整合包下载弹窗 -->
+    <div class="modal-overlay" id="modpack-modal">
+        <div class="modal-box">
+            <button class="modal-close" id="modpack-close">&times;</button>
+            <p class="modal-title">整合包下载</p>
+            <p class="modal-msg">仅限内部成员使用</p>
+            <p class="modal-msg">需要提取码，提取码在交流群内查看</p>
+            <a href="https://1824278629.share.123pan.cn/123pan/imnPjv-5i7K3" target="_blank" class="modal-download-btn">跳转网盘</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('modpack-trigger').addEventListener('click', function() {
+            document.getElementById('modpack-modal').classList.add('active');
+        });
+        document.getElementById('modpack-close').addEventListener('click', function() {
+            document.getElementById('modpack-modal').classList.remove('active');
+        });
+        document.getElementById('modpack-modal').addEventListener('click', function(e) {
+            if (e.target === this) this.classList.remove('active');
+        });
     </script>
 </body>
 </html>
