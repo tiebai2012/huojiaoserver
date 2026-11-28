@@ -838,6 +838,15 @@ body {
         font-size: 13px;
     }
 
+    /* 手机上顶栏会折成两行变高，页面相应下移，避免内容被顶栏盖住 */
+    .page {
+        padding-top: 79px;
+    }
+
+    .notice-layout {
+        height: calc(100vh - 79px);
+    }
+
     .modpack-btn {
         font-size: 13px;
         padding: 6px 14px;
